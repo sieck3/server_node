@@ -3,23 +3,23 @@ import React, { Component } from 'react'
 import '../css/style.css'
 
 class MainContainer extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props)
         this.state = {
-           test_value : 'cliente!'
+            test_value: 'Monssieur!'
         }
     }
 
-    componentDidMount () {
-           console.log('Main container ComponentDidMount')
+    componentDidMount() {
+        console.log('Main container ComponentDidMount')
     }
-    
 
-    render(){
+
+    render() {
         return (
-         <div>
-          <h1>Bienvenido a mi server node  {this.state.test_value}</h1>
-         </div>
+            <div>
+                <h1>Bienvenido a mi server node  {this.state.test_value}</h1>
+            </div>
 
         )
     }
@@ -76,4 +76,4 @@ class MainContainer extends Component {
 
 export default MainContainer
 
-*/ 
+*/
