@@ -4,12 +4,10 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const path = require('path')
-//const dao = require('.').dao
 
+//const dao = require('.').dao
 // parse application/x-www-form-urlencoded
 //app.use(bodyParser.urlencoded({ extended: true }))
-app.use(express.static(path.join(__dirname,"dist")))
-
 // parse application/json
 //app.use(bodyParser.json())
 //app.use(express.static('dist'))
@@ -18,20 +16,24 @@ const PORT = 8080
 const HTTP_OK = 200
 const CONTENT_TYPE_JSON = 'application/json'
 const CONTENT_TYPE_HTML = 'text/html'
+const dataRoute = require('./src/routes/')
 
-app.use('/data',require('./src/routes/routes'))
+app.use(express.static(path.join(__dirname,"dist")))
 
+app.use('/data',dataRoute)
+
+/*
 app.get('/secreto', (request, response) => {
     response.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
     response.end(JSON.stringify({noob:1}))
-    /*dao.connect()
+    dao.connect()
     dao.query('SELECT * FROM track', [], (result) => {
         // assert.strictEqual(result.command, 'SELECT')
         response.end(JSON.stringify(result.rows))
         dao.disconnect()
-    })*/
+    })
 })
-
+*/
 
 app.listen(PORT, function () {
     console.log('Server listening on: http://localhost:%s', PORT)

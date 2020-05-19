@@ -1,5 +1,12 @@
-const router = require('express').Router()
+const router = require("express").Router()
 
+router.route("/ruta1")
+    .get((req,res)=>{
+       res.send("Ruta 1 Welcome")
+
+    })
+
+/*
 router.route('/')
     .get((req, res) => {
         res.send({
@@ -16,5 +23,6 @@ router.route('/')
     }
 
     )
+*/
 
 module.exports = router
