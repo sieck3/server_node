@@ -18,9 +18,11 @@ const CONTENT_TYPE_JSON = 'application/json'
 const CONTENT_TYPE_HTML = 'text/html'
 const dataRoute = require('./src/routes/')
 
+
 app.use(express.static(path.join(__dirname,"dist")))
 
-app.use('/data',dataRoute)
+app.use('/',dataRoute)
+
 
 /*
 app.get('/secreto', (request, response) => {
@@ -34,6 +36,7 @@ app.get('/secreto', (request, response) => {
     })
 })
 */
+
 
 app.listen(PORT, function () {
     console.log('Server listening on: http://localhost:%s', PORT)

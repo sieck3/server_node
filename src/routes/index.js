@@ -13,7 +13,10 @@ const CONTENT_TYPE_JSON = 'application/json'
 const CONTENT_TYPE_HTML = 'text/html'
 
 
+
+
 //Page 2 route
+
 router.use('/',require('./route1'))
 router.use('/',require('./route2'))
 
