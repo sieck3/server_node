@@ -1,13 +1,18 @@
 
 import React, { Component } from 'react'
 import '../css/book-style.css'
+import FormComponent from '../component/form-component'
 
 class BookContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            test_value: 'Book!'
+            test_value: 'Book!',
+            bookName: ''
         }
+
+        this.envoie = this.envoie.bind(this)
+        this.getBookName = this.getBookName.bind(this)
     }
 
     componentDidMount() {
@@ -17,13 +22,36 @@ class BookContainer extends Component {
         .then(response => {
             console.log('holi')
         })
+
+       /* fetch('https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=AIzaSyBlAK2pStJIbffK6pUx2MhH0wIescuMrHw', { method: 'GET' })
+        .then(response => response.json)
+        .then(response => {
+            console.log(response)
+        })*/
     }
 
+    
+
+    getBookName (e) {
+        this.setState({ bookName: e.target.value })
+        console.log('getBookName '+e.target.value)
+        console.log(this.state.bookName)
+    }
+
+    envoie (event) {
+        event.preventDefault()
+         fetch('https://www.googleapis.com/books/v1/volumes?q='+this.state.bookName+':keyes&key=AIzaSyBlAK2pStJIbffK6pUx2MhH0wIescuMrHw', { method: 'GET' })
+        .then(response => response.json())
+        .then(response => {
+            console.log(JSON.stringify(response))
+        })
+    }
 
     render() {
         return (
             <div>
                 <h2> Container  {this.state.test_value}</h2>
+                <FormComponent metodo={this.envoie} getBookName={this.getBookName} />
             </div>
 
         )

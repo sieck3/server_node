@@ -1,18 +1,18 @@
 import React from 'react'
 
-const InputComponent = ({text}) => (
+const FormComponent = ({metodo,getBookName}) => (
 
     <div>
-        <form >
+        <form onSubmit={metodo}>
             <div>
-                <label>path :&nbsp;</label>
-                <input type='text' />
+                <label>Nombre del libro :&nbsp;</label>
+                <input type='text' onChange={getBookName}/>
             </div>
-            <button type='submit'>envoier</button>
+            <button type='submit' >Enviar</button>
         </form>
      
     </div>
 
 )
 
-export default InputComponent
+export default FormComponent

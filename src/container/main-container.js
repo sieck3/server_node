@@ -14,11 +14,7 @@ class MainContainer extends Component {
 
     componentDidMount() {
         console.log('Main container ComponentDidMount')
-        fetch('/ruta1', { method: 'GET' })
-        .then(response => response)
-        .then(response => {
-            console.log('holi')
-        })
+    
     }
 
 
