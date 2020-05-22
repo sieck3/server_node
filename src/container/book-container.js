@@ -1,32 +1,25 @@
 
 import React, { Component } from 'react'
-import '../css/style.css'
-import BookContainer from '../container/book-container'
+import '../css/book-style.css'
 
-
-class MainContainer extends Component {
+class BookContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            test_value: 'Monssieur!'
+            test_value: 'Book!'
         }
     }
 
     componentDidMount() {
-        console.log('Main container ComponentDidMount')
-        fetch('/ruta1', { method: 'GET' })
-        .then(response => response)
-        .then(response => {
-            console.log('holi')
-        })
+        console.log('Book Container')
+      
     }
 
 
     render() {
         return (
             <div>
-                <h1>Bienvenido a mi server node  {this.state.test_value}</h1>
-                <BookContainer />
+                <h2> Container  {this.state.test_value}</h2>
             </div>
 
         )
@@ -34,7 +27,7 @@ class MainContainer extends Component {
 
 }
 
-export default MainContainer
+export default BookContainer
 
 
 /*
