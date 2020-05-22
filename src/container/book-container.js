@@ -12,7 +12,11 @@ class BookContainer extends Component {
 
     componentDidMount() {
         console.log('Book Container')
-      
+        fetch('/ruta1', { method: 'GET' })
+        .then(response => response)
+        .then(response => {
+            console.log('holi')
+        })
     }
 
 
