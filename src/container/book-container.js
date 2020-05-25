@@ -1,14 +1,18 @@
 
 import React, { Component } from 'react'
-import '../css/book-style.css'
+
 import FormComponent from '../component/form-component'
+import BookComponent from '../component/book-component'
+
+const APIKEY = require('../../../server_node/index').apikey
 
 class BookContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
             test_value: 'Book!',
-            bookName: ''
+            bookName: '',
+            libros: null
         }
 
         this.envoie = this.envoie.bind(this)
@@ -16,42 +20,52 @@ class BookContainer extends Component {
     }
 
     componentDidMount() {
-        console.log('Book Container')
-        fetch('/ruta1', { method: 'GET' })
-        .then(response => response)
-        .then(response => {
-            console.log('holi')
-        })
-
-       /* fetch('https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=AIzaSyBlAK2pStJIbffK6pUx2MhH0wIescuMrHw', { method: 'GET' })
-        .then(response => response.json)
-        .then(response => {
-            console.log(response)
-        })*/
+        /*  console.log('Book Container')
+          fetch('/ruta1', { method: 'GET' })
+              .then(response => response)
+              .then(response => {
+                  console.log('holi')
+              })
+  
+          fetch('https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=AIzaSyBlAK2pStJIbffK6pUx2MhH0wIescuMrHw', { method: 'GET' })
+            .then(response => response.json)
+            .then(response => {
+                console.log(response)
+            })*/
     }
 
-    
 
-    getBookName (e) {
+
+    getBookName(e) {
         this.setState({ bookName: e.target.value })
-        console.log('getBookName '+e.target.value)
+        console.log('getBookName ' + e.target.value)
         console.log(this.state.bookName)
     }
 
-    envoie (event) {
+    envoie(event) {
         event.preventDefault()
-         fetch('https://www.googleapis.com/books/v1/volumes?q='+this.state.bookName+':keyes&key=AIzaSyBlAK2pStJIbffK6pUx2MhH0wIescuMrHw', { method: 'GET' })
-        .then(response => response.json())
-        .then(response => {
-            console.log(JSON.stringify(response))
-        })
+        fetch('https://www.googleapis.com/books/v1/volumes?q=' + this.state.bookName + '&key=' + APIKEY, { method: 'GET' })
+            .then(response => response.json())
+            .then(response => {
+                //console.log(JSON.stringify(response))
+                // console.log(JSON.stringify(response.items))
+                //let msj = { title: '' }
+                // response.items.map((index,objeto)=>console.log(objeto.selfLink+'xx'))
+                // response.items.map((objeto, index) => <h2>{objeto.id}</h2>)
+
+                this.setState({ libros: response.items })
+            })
     }
 
     render() {
+        //typeof(yourvariable) == 'undefined'
         return (
             <div>
-                <h2> Container  {this.state.test_value}</h2>
+             
                 <FormComponent metodo={this.envoie} getBookName={this.getBookName} />
+                <div id='books-container'>
+                {this.state.libros !== null ? this.state.libros.map((libro, index) => <BookComponent titulo={libro.volumeInfo.title} imagen={typeof libro.volumeInfo.imageLinks === 'undefined' ? 'img/notFound.png' : libro.volumeInfo.imageLinks.thumbnail} key={index} />) : <label></label>}
+                </div>
             </div>
 
         )

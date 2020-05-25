@@ -1,7 +1,7 @@
-const login = require('./src/soft/login')
+const apikey = require('./src/soft/key').apikey
 
 
 
 module.exports = {
-    login: login
+    apikey: apikey
 }

@@ -1,0 +1,39 @@
+.book {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    width: 300px;
+    height: 500px;
+    font-size: 1.3rem;
+    color: black;
+    margin: 4px;
+    border-radius: 4px ;
+    /*BOX SHADOW*/
+    -webkit-box-shadow: 10px 10px 5px -8px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px -8px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px -8px rgba(0,0,0,0.75);
+}
+
+.book h2 {
+    height: 10%;
+}
+
+.book img {
+    height: 100%;
+}
+
+.book img {
+    width: 100%;
+}
+
+@media only screen and (max-width: 959px) {
+    .book {
+        width: 120px;
+        height: 230px;
+        font-size: .5rem;
+    }
+    .book img {
+        width: 100%;
+        height: 100%;
+    }
+}

@@ -8,20 +8,20 @@ class MainContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            test_value: 'Monssieur!'
+            test_value: '!'
         }
     }
 
     componentDidMount() {
         console.log('Main container ComponentDidMount')
-    
+
     }
 
 
     render() {
         return (
             <div>
-                <h1>Bienvenido a mi server node  {this.state.test_value}</h1>
+                <h1>Bienvenido, busca un libro  {this.state.test_value}</h1>
                 <BookContainer />
             </div>
 
