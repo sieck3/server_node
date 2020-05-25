@@ -8,7 +8,7 @@ class MainContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            test_value: '!'
+         
         }
     }
 
@@ -21,7 +21,7 @@ class MainContainer extends Component {
     render() {
         return (
             <div>
-                <h1>Bienvenido, busca un libro  {this.state.test_value}</h1>
+                <h1>Bienvenido, busca un libro!</h1>
                 <BookContainer />
             </div>
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import '../css/form-component.css'
 
 const FormComponent = ({metodo,getBookName}) => (
 
