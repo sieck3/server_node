@@ -12,15 +12,17 @@ class BookContainer extends Component {
         this.state = {
             test_value: 'Book!',
             bookName: '',
-            libros: null
+            libros: null,
+            bookAutor: ''
         }
 
         this.envoie = this.envoie.bind(this)
         this.getBookName = this.getBookName.bind(this)
+        this.getAutor = this.getAutor.bind(this)
     }
 
     componentDidMount() {
-     
+        fetch('/ruta1', { method: 'GET' })
     }
 
 
@@ -31,23 +33,39 @@ class BookContainer extends Component {
         console.log(this.state.bookName)
     }
 
+    getAutor(e) {
+        this.setState({ bookAutor: e.target.value })
+        console.log('getBookAutor ' + e.target.value)
+        console.log(this.state.bookAutor)
+    }
+
     envoie(event) {
         event.preventDefault()
-        fetch('https://www.googleapis.com/books/v1/volumes?q=' + this.state.bookName + '&key=' + APIKEY, { method: 'GET' })
+        let searchUrl = ''
+        searchUrl = 'https://www.googleapis.com/books/v1/volumes?q=' + this.state.bookName + '&key=' + APIKEY
+        if (this.state.bookAutor !== '') {
+            searchUrl = 'https://www.googleapis.com/books/v1/volumes?q=' + this.state.bookName + '+' + 'inauthor:' + this.state.bookAutor + '&key=' + APIKEY
+        }
+        console.log('search result =' + searchUrl)
+        fetch(searchUrl, { method: 'GET' })
             .then(response => response.json())
             .then(response => {
-   
-                this.setState({ libros: response.items })
+                if (typeof (response.items) !== 'undefined') {
+                    this.setState({ libros: response.items })
+                } else {
+                    this.setState({ libros: null })
+                }
             })
+        fetch('/ruta1', { method: 'GET' })
     }
 
     render() {
         return (
             <div>
-             
-                <FormComponent metodo={this.envoie} getBookName={this.getBookName} />
+
+                <FormComponent metodo={this.envoie} getBookName={this.getBookName} getAutor={this.getAutor} />
                 <div id='books-container'>
-                {this.state.libros !== null ? this.state.libros.map((libro, index) => <BookComponent titulo={libro.volumeInfo.title} imagen={typeof libro.volumeInfo.imageLinks === 'undefined' ? 'img/notFound.png' : libro.volumeInfo.imageLinks.thumbnail} key={index} />) : <label></label>}
+                    {this.state.libros !== null ? this.state.libros.map((libro, index) => <BookComponent titulo={libro.volumeInfo.title} imagen={typeof libro.volumeInfo.imageLinks === 'undefined' ? 'img/notFound.png' : libro.volumeInfo.imageLinks.thumbnail} key={index} />) : <label>sin resultados</label>}
                 </div>
             </div>
 
