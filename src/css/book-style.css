@@ -16,24 +16,27 @@
 
 .book h2 {
     height: 10%;
-}s
-
-.book img {
-    height: 100%;
 }
 
 .book img {
-    width: 100%;
+    height: 80%;
+    
+}
+
+.book img {
+    width: 65%;
+    margin:0 auto;
+    padding: 1%;
 }
 
 @media only screen and (max-width: 959px) {
     .book {
-        width: 120px;
-        height: 230px;
+        width: 135px;
+        height: 180px;
         font-size: .5rem;
     }
     .book img {
-        width: 100%;
-        height: 80%;
+        width: 80%;
+        height: 60%;
     }
 }

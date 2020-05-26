@@ -2,21 +2,33 @@ import React from 'react'
 import '../css/filtre-style.css'
 
 
-const FormComponent = ({metodo,getBookName,getAutor}) => (
+const FormComponent = ({ metodo, getBookName, getAutor }) => (
 
     <div>
+
         <form onSubmit={metodo}>
+
+
+            <fieldset>
+                <legend>Buscador</legend>
+                <div>
+                    <label for="lastName">Nombre</label>
+                    <input type="text" onChange={getBookName} autofocus />
+                </div>
+
+                <div>
+                    <label>Autor:</label>
+                    <input type='text' onChange={getAutor} />
+                </div>
+
+
+            </fieldset>
+
             <div>
-                <label>Nombre del libro:</label>
-                <input type='text' onChange={getBookName}/>
+                <input type="submit" />
             </div>
-            <div>
-                <label>Autor:</label>
-                <input type='text' onChange={getAutor}/>
-            </div>
-            <button type='submit' >Enviar</button>
+
         </form>
-     
     </div>
 
 )

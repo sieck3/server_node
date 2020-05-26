@@ -21,7 +21,7 @@ class MainContainer extends Component {
     render() {
         return (
             <div>
-                <h1>Bienvenido, busca un libro!</h1>
+                <h1>Buscalibros</h1>
                 <BookContainer />
             </div>
 

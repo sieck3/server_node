@@ -1,12 +1,51 @@
-form{
-    width: 80%;
-    margin: 0 auto;
-    text-align: center;
-    font-size: 1.4rem;
-    margin-top: 10px;
+fieldset {
+    background-color: lightgray;
+    -webkit-box-shadow: 4px 5px 5px 0px rgba(0, 0, 0, 0.39);
+    -moz-box-shadow: 4px 5px 5px 0px rgba(0, 0, 0, 0.39);
+    box-shadow: 4px 5px 5px 0px rgba(0, 0, 0, 0.39);
+    border-radius: 10px;
 }
 
-form input {
+form h2 {
+    margin-left: 22%;
+}
 
-    margin: 5px;
+fieldset>legend {
+    background-color: lightsteelblue;
+    color: white;
+    padding: 10px;
+    -webkit-box-shadow: 30px 36px 14px -22px rgba(0,0,0,0.43);
+    -moz-box-shadow: 30px 36px 14px -22px rgba(0,0,0,0.43);
+    box-shadow: 30px 36px 14px -22px rgba(0,0,0,0.43);
+}
+
+fieldset {
+    width: 30%;
+    margin: 0 auto;
+}
+
+fieldset label {
+    display: inline-block;
+    width: 70px;
+    margin-left: 20%;
+    padding: 2%;
+    text-align: right;
+}
+
+fieldset+div input {
+    margin: 1%;
+    font-weight: bold;
+    color: antiquewhite;
+    background-color: grey;
+    padding: 10px;
+    -webkit-box-shadow: 4px 5px 5px 0px rgba(0, 0, 0, 0.39);
+    -moz-box-shadow: 4px 5px 5px 0px rgba(0, 0, 0, 0.39);
+    box-shadow: 4px 5px 5px 0px rgba(0, 0, 0, 0.39);
+}
+
+form fieldset+div {
+    padding-top: 2%;
+    margin: 0 auto;
+    width: 20%;
+    text-align: center;
 }

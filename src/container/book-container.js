@@ -13,7 +13,8 @@ class BookContainer extends Component {
             test_value: 'Book!',
             bookName: '',
             libros: null,
-            bookAutor: ''
+            bookAutor: '',
+            spinner:false
         }
 
         this.envoie = this.envoie.bind(this)
@@ -41,6 +42,7 @@ class BookContainer extends Component {
 
     envoie(event) {
         event.preventDefault()
+        this.setState({spinner:true})
         let searchUrl = ''
         searchUrl = 'https://www.googleapis.com/books/v1/volumes?q=' + this.state.bookName + '&key=' + APIKEY
         if (this.state.bookAutor !== '') {
@@ -52,6 +54,8 @@ class BookContainer extends Component {
             .then(response => {
                 if (typeof (response.items) !== 'undefined') {
                     this.setState({ libros: response.items })
+                    this.setState({spinner:false})
+
                 } else {
                     this.setState({ libros: null })
                 }
@@ -64,8 +68,10 @@ class BookContainer extends Component {
             <div>
 
                 <FormComponent metodo={this.envoie} getBookName={this.getBookName} getAutor={this.getAutor} />
+            
                 <div id='books-container'>
-                    {this.state.libros !== null ? this.state.libros.map((libro, index) => <BookComponent titulo={libro.volumeInfo.title} imagen={typeof libro.volumeInfo.imageLinks === 'undefined' ? 'img/notFound.png' : libro.volumeInfo.imageLinks.thumbnail} key={index} />) : <label>sin resultados</label>}
+                    {this.state.spinner === true ? <span class="spinner"></span>:''}
+                    {this.state.libros !== null ? this.state.libros.map((libro, index) => <BookComponent titulo={libro.volumeInfo.title} imagen={typeof libro.volumeInfo.imageLinks === 'undefined' ? 'img/notFound.png' : libro.volumeInfo.imageLinks.thumbnail} key={index} />) :''}
                 </div>
             </div>
 
