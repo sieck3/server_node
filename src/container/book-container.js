@@ -44,9 +44,9 @@ class BookContainer extends Component {
         event.preventDefault()
         this.setState({spinner:true})
         let searchUrl = ''
-        searchUrl = 'https://www.googleapis.com/books/v1/volumes?q=' + this.state.bookName + '&key=' + APIKEY
+        searchUrl = 'https://www.googleapis.com/books/v1/volumes?q=' + this.state.bookName +  '&maxResults=40'+'&key=' + APIKEY
         if (this.state.bookAutor !== '') {
-            searchUrl = 'https://www.googleapis.com/books/v1/volumes?q=' + this.state.bookName + '+' + 'inauthor:' + this.state.bookAutor + '&key=' + APIKEY
+            searchUrl = 'https://www.googleapis.com/books/v1/volumes?q=' + this.state.bookName + '+' + 'inauthor:' + this.state.bookAutor+ '&key=' + APIKEY
         }
         console.log('search result =' + searchUrl)
         fetch(searchUrl, { method: 'GET' })
