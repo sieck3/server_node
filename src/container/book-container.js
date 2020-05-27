@@ -70,7 +70,7 @@ class BookContainer extends Component {
                 <FormComponent metodo={this.envoie} getBookName={this.getBookName} getAutor={this.getAutor} />
             
                 <div id='books-container'>
-                    {this.state.spinner === true ? <span class="spinner"></span>:''}
+                    {this.state.spinner === true ? <span className="spinner"></span>:''}
                     {this.state.libros !== null ? this.state.libros.map((libro, index) => <BookComponent titulo={libro.volumeInfo.title} imagen={typeof libro.volumeInfo.imageLinks === 'undefined' ? 'img/notFound.png' : libro.volumeInfo.imageLinks.thumbnail} key={index} />) :''}
                 </div>
             </div>

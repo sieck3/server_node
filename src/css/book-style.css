@@ -1,7 +1,8 @@
 .book {
     display: flex;
     flex-direction: column;
-    border: 2px solid black;
+    /*border: 2px solid black;
+    */
     width: 300px;
     height: 80%;
     font-size: 1.1srem;
@@ -9,9 +10,7 @@
     margin: 4px;
     border-radius: 8px;
     /*BOX SHADOW*/
-    -webkit-box-shadow: 10px 10px 5px -8px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 10px 10px 5px -8px rgba(0, 0, 0, 0.75);
-    box-shadow: 10px 10px 5px -8px rgba(0, 0, 0, 0.75);
+
     justify-content: center;
 }
 
@@ -22,6 +21,9 @@
 
 .book img {
     height: 80%;
+    -webkit-box-shadow: 10px 10px 5px -8px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 5px -8px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 5px -8px rgba(0, 0, 0, 0.75);
 }
 
 .book img {
