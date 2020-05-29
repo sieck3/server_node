@@ -2,14 +2,18 @@
 import React, { Component } from 'react'
 import '../css/style.css'
 import BookContainer from '../container/book-container'
-
+import BookDetailComponent from '../component/book-detail-component'
 
 class MainContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-         
+            pageCourrante: 'BookContainer',
+            containerCourrant: <BookContainer />
         }
+        this.changePage = this.changePage.bind(this)
+
+
     }
 
     componentDidMount() {
@@ -17,12 +21,28 @@ class MainContainer extends Component {
 
     }
 
+    changePage(page) {
+        let nextPage = ''
+        switch (page) {
+            case 'BookContainer':
+                nextPage = <BookContainer changePage={this.changePage} />
+                break;
+            case 'BookDetailContainer':
+                nextPage = <BookDetailComponent />
+                break;
+
+            default:
+                break;
+        }
+
+        this.setState({ containerCourrant: nextPage })
+    }
 
     render() {
         return (
             <div>
                 <h1>Buscalibros</h1>
-                <BookContainer />
+                {this.state.containerCourrant}
             </div>
 
         )
