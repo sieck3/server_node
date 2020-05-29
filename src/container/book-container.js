@@ -64,9 +64,11 @@ class BookContainer extends Component {
         fetch('/ruta1', { method: 'GET' })
     }
 
-    goDetailBook() {
+    goDetailBook(event) {
         //this.props.changePage('BookDetailContainer')
-        console.log('detalles')
+
+        console.log('detalles' + event.target.id)
+        console.log('detalles' + event.target.value)
     }
 
     render() {
@@ -76,9 +78,9 @@ class BookContainer extends Component {
                 <FormComponent metodo={this.envoie} getBookName={this.getBookName} getAutor={this.getAutor} />
 
 
-                <div id='books-container' onClick={this.goDetailBook()}>
+                <div id='books-container' >
                     {this.state.spinner === true ? <span className="spinner"></span> : ''}
-                    {this.state.libros !== null ? this.state.libros.map((libro, index) => <BookComponent titulo={libro.volumeInfo.title} imagen={typeof libro.volumeInfo.imageLinks === 'undefined' ? 'img/notFound.png' : libro.volumeInfo.imageLinks.thumbnail} key={index} />) : ''}
+                    {this.state.libros !== null ? this.state.libros.map((libro, index) => <BookComponent titulo={libro.volumeInfo.title} imagen={typeof libro.volumeInfo.imageLinks === 'undefined' ? 'img/notFound.png' : libro.volumeInfo.imageLinks.thumbnail} changePage={this.goDetailBook} key={index} />) : ''}
 
                 </div>
             </div>
