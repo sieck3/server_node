@@ -45,7 +45,7 @@ class BookContainer extends Component {
         event.preventDefault()
         this.setState({ spinner: true })
         let searchUrl = ''
-        searchUrl = 'https://www.googleapis.com/books/v1/volumes?q=' + this.state.bookName + '&key=' + APIKEY
+        searchUrl = 'https://www.googleapis.com/books/v1/volumes?q=' + this.state.bookName + '&maxResults=40' + '&key=' + APIKEY
         if (this.state.bookAutor !== '') {
             searchUrl = 'https://www.googleapis.com/books/v1/volumes?q=' + this.state.bookName + '+' + 'inauthor:' + this.state.bookAutor + '&key=' + APIKEY
         }
@@ -75,9 +75,11 @@ class BookContainer extends Component {
 
                 <FormComponent metodo={this.envoie} getBookName={this.getBookName} getAutor={this.getAutor} />
 
+
                 <div id='books-container' onClick={this.goDetailBook()}>
                     {this.state.spinner === true ? <span className="spinner"></span> : ''}
                     {this.state.libros !== null ? this.state.libros.map((libro, index) => <BookComponent titulo={libro.volumeInfo.title} imagen={typeof libro.volumeInfo.imageLinks === 'undefined' ? 'img/notFound.png' : libro.volumeInfo.imageLinks.thumbnail} key={index} />) : ''}
+
                 </div>
             </div>
 

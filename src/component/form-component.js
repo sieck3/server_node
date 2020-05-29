@@ -2,6 +2,7 @@ import React from 'react'
 import '../css/filtre-style.css'
 
 
+
 const FormComponent = ({ metodo, getBookName, getAutor }) => (
 
     <div>
@@ -12,8 +13,10 @@ const FormComponent = ({ metodo, getBookName, getAutor }) => (
             <fieldset>
                 <legend>Buscador</legend>
                 <div>
-                    <label >Nombre</label>
+
+                    <label>Nombre:</label>
                     <input type="text" onChange={getBookName} />
+
                 </div>
 
                 <div>
