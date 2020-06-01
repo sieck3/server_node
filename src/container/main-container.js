@@ -3,46 +3,76 @@ import React, { Component } from 'react'
 import '../css/style.css'
 import BookContainer from '../container/book-container'
 import BookDetailComponent from '../component/book-detail-component'
+import BookDetailContainer from '../container/book-detail-container'
 
 class MainContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
             pageCourrante: 'BookContainer',
-            containerCourrant: <BookContainer />
+            livreIdCourrante: '',
+            livre: {}
         }
         this.changePage = this.changePage.bind(this)
+        this.pageCourrante = this.pageCourrante.bind(this)
+        this.changeLivre = this.changeLivre.bind(this)
 
 
     }
 
     componentDidMount() {
-        console.log('Main container ComponentDidMount')
+        //console.log('Main container ComponentDidMount')
 
     }
 
     changePage(page) {
-        let nextPage = ''
-        switch (page) {
+
+        this.setState({ pageCourrante: page })
+    }
+
+    changeLivre(livre) {
+
+      
+    
+
+        let searchLivre = 'https://www.googleapis.com/books/v1/volumes/' + livre + '?key=AIzaSyBlAK2pStJIbffK6pUx2MhH0wIescuMrHw'
+
+        // fetch('/ruta1', { method: 'GET' })
+        fetch(searchLivre, { method: 'GET' })
+            .then(response => response.json())
+            .then(response => {
+                console.log('response general'+ response.volumeInfo.title)
+                this.setState({livre:response}) 
+                console.log('livre interno :'+this.state.livre.volumeInfo.title)
+                this.setState({pageCourrante:'BookDetailContainer'})
+            
+        })
+    }
+
+    pageCourrante() {
+        let pageChoisi = null
+
+        switch (this.state.pageCourrante) {
             case 'BookContainer':
-                nextPage = <BookContainer changePage={this.changePage} />
+                pageChoisi = <BookContainer changePage={this.changePage} changeLivre={this.changeLivre} />
                 break;
             case 'BookDetailContainer':
-                nextPage = <BookDetailComponent />
+                pageChoisi = <BookDetailContainer livre={this.state.livre} changePage={this.changePage}/>
                 break;
 
             default:
                 break;
         }
 
-        this.setState({ containerCourrant: nextPage })
+        return pageChoisi
+
     }
 
     render() {
         return (
             <div>
                 <h1>Buscalibros</h1>
-                {this.state.containerCourrant}
+                {this.pageCourrante()}
             </div>
 
         )

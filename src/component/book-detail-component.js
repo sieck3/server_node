@@ -4,9 +4,7 @@ import '../css/book-style.css'
 const BookDetailComponent = ({ titulo, imagen }) => (
 
     <div>
-        <div className='book'>
-            <h4>Book detail Component</h4>
-            <h2>{titulo}</h2>
+        <div className='book-detail'>
             <img src={imagen} alt="img book" />
         </div>
 

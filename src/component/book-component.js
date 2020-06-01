@@ -3,12 +3,12 @@ import '../css/book-style.css'
 const STRING_SOLUTIONS = require('../../../server_node/index').STRING_SOLUTIONS
 
 
-const BookComponent = ({ titulo, imagen, changePage }) => (
+const BookComponent = ({ bookId, titulo, imagen, changePage }) => (
 
     <div >
-        <div className='book' >
-            <h2 >{STRING_SOLUTIONS.cortaTitulo(titulo)}</h2>
-            <img src={imagen} alt="img book" id='ssss' value='aa' onClick={changePage} />
+        <div className='book' id={bookId} onClick={changePage}>
+            <h2 id={bookId} onClick={changePage}>{STRING_SOLUTIONS.cortaTitulo(titulo)}</h2>
+            <img src={imagen} alt="img book" id={bookId} onClick={changePage} />
         </div>
 
     </div>
