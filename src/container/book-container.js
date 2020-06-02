@@ -24,7 +24,7 @@ class BookContainer extends Component {
     }
 
     componentDidMount() {
-        fetch('/ruta1', { method: 'GET' })
+        // fetch('/ruta1', { method: 'GET' })
     }
 
 
@@ -32,10 +32,12 @@ class BookContainer extends Component {
     getBookName(e) {
         this.setState({ bookName: e.target.value })
 
+        this.props.changeInputs(e.target.value, this.state.bookAutor)
     }
 
     getAutor(e) {
         this.setState({ bookAutor: e.target.value })
+        this.props.changeInputs(this.state.bookName, e.target.value)
     }
 
     envoie(event) {
@@ -46,9 +48,13 @@ class BookContainer extends Component {
         if (this.state.bookAutor !== '') {
             searchUrl = 'https://www.googleapis.com/books/v1/volumes?q=' + this.state.bookName + '+' + 'inauthor:' + this.state.bookAutor + '&key=' + APIKEY
         }
-        fetch(searchUrl, { method: 'GET' })
+        fetch(searchUrl, {
+            method: 'GET', credentials: 'same-origin'
+        })
             .then(response => response.json())
+
             .then(response => {
+
                 if (typeof (response.items) !== 'undefined') {
                     this.setState({ libros: response.items })
                     this.setState({ spinner: false })
@@ -57,7 +63,7 @@ class BookContainer extends Component {
                     this.setState({ libros: null })
                 }
             })
-        fetch('/ruta1', { method: 'GET' })
+        // fetch('/ruta1', { method: 'GET' })
 
         this.props.changeLivres(searchUrl)
     }
@@ -76,10 +82,10 @@ class BookContainer extends Component {
         return (
 
             <div>
-                <FormComponent metodo={this.envoie} getBookName={this.getBookName} getAutor={this.getAutor} />
+                <FormComponent bookNameC={this.props.bookNameC} bookAutorC={this.props.bookAutorC} metodo={this.envoie} getBookName={this.getBookName} getAutor={this.getAutor} bookName={this.state.bookName} />
                 <div id='books-container' >
                     {this.state.spinner === true ? <span className="spinner"></span> : ''}
-                    {libros !== null ? libros.map((libro, index) => <BookComponent bookId={libro.id} titulo={libro.volumeInfo.title} imagen={typeof libro.volumeInfo.imageLinks === 'undefined' ? 'img/notFound.png' : libro.volumeInfo.imageLinks.thumbnail} changePage={this.goDetailBook} key={index} />) : ''}
+                    {libros !== null ? libros.map((libro, index) => <BookComponent bookId={libro.id} titulo={libro.volumeInfo.title} imagen={typeof libro.volumeInfo.imageLinks === 'undefined' ? 'img/notFound.png' : (libro.volumeInfo.imageLinks.thumbnail)} changePage={this.goDetailBook} key={index} />) : ''}
                 </div>
             </div>
 

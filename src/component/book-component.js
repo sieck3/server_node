@@ -8,7 +8,7 @@ const BookComponent = ({ bookId, titulo, imagen, changePage }) => (
     <div >
         <div className='book' id={bookId} onClick={changePage}>
             <h2 id={bookId} onClick={changePage}>{STRING_SOLUTIONS.cortaTitulo(titulo)}</h2>
-            <img src={imagen} alt="img book" id={bookId} onClick={changePage} />
+            <img src={imagen} alt="img book" id={bookId} onClick={changePage}/>
         </div>
 
     </div>

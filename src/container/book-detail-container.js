@@ -30,7 +30,7 @@ class BookDetailContainer extends Component {
         return (
             <div>
                 <h2>{this.state.livre.volumeInfo.title}</h2>
-                <BookDetailComponent titulo={this.state.livre.volumeInfo.title} imagen={typeof this.state.livre.volumeInfo.imageLinks === 'undefined' ? 'notFound' : this.state.livre.volumeInfo.imageLinks.smallThumbnail} description={this.state.livre.volumeInfo.description} />
+                <BookDetailComponent imagen={typeof this.state.livre.volumeInfo.imageLinks === 'undefined' ? 'notFound' : (typeof this.state.livre.volumeInfo.imageLinks.medium !== 'undefined' ? this.state.livre.volumeInfo.imageLinks.thumbnail : this.state.livre.volumeInfo.imageLinks.thumbnail)} description={this.state.livre.volumeInfo.description} />
                 <button onClick={this.returneSearch}>return</button>
             </div>
 

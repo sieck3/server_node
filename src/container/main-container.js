@@ -12,19 +12,22 @@ class MainContainer extends Component {
             pageCourrante: 'BookContainer',
             livreIdCourrante: '',
             livre: {},
-            livres: null
+            livres: null,
+            bookName: '',
+            bookAutor: ''
         }
         this.changePage = this.changePage.bind(this)
         this.pageCourrante = this.pageCourrante.bind(this)
         this.changeLivre = this.changeLivre.bind(this)
         this.changeLivres = this.changeLivres.bind(this)
+        this.changeInputs = this.changeInputs.bind(this)
 
 
     }
 
     componentDidMount() {
         //console.log('Main container ComponentDidMount')
-
+      
     }
 
     changePage(page) {
@@ -36,7 +39,9 @@ class MainContainer extends Component {
 
         let searchLivre = 'https://www.googleapis.com/books/v1/volumes/' + livre + '?key=AIzaSyBlAK2pStJIbffK6pUx2MhH0wIescuMrHw'
         // fetch('/ruta1', { method: 'GET' })
-        fetch(searchLivre, { method: 'GET' })
+        fetch(searchLivre, {
+            method: 'GET', credentials: 'same-origin'
+        })
             .then(response => response.json())
             .then(response => {
                 this.setState({ livre: response })
@@ -46,8 +51,10 @@ class MainContainer extends Component {
     }
 
     changeLivres(livresLien) {
-        console.log('Charge books', livresLien)
-        fetch(livresLien, { method: 'GET' })
+
+        fetch(livresLien, {
+            method: 'GET', credentials: 'same-origin'
+        })
             .then(response => response.json())
             .then(response => {
                 if (typeof (response.items) !== 'undefined') {
@@ -57,15 +64,20 @@ class MainContainer extends Component {
                     this.setState({ livres: null })
                 }
             })
-        fetch('/ruta1', { method: 'GET' })
+        //fetch('/ruta1', { method: 'GET' })
     }
 
+    changeInputs(title, autor) {
+
+        this.setState({ bookName: title })
+        this.setState({ bookAutor: autor })
+    }
     pageCourrante() {
         let pageChoisi = null
 
         switch (this.state.pageCourrante) {
             case 'BookContainer':
-                pageChoisi = <BookContainer changePage={this.changePage} changeLivre={this.changeLivre} changeLivres={this.changeLivres} livres={this.state.livres} />
+                pageChoisi = <BookContainer changePage={this.changePage} changeLivre={this.changeLivre} changeLivres={this.changeLivres} livres={this.state.livres} changeInputs={this.changeInputs} bookNameC={this.state.bookName} bookAutorC={this.state.bookAutor} />
                 break;
             case 'BookDetailContainer':
                 pageChoisi = <BookDetailContainer livre={this.state.livre} changePage={this.changePage} />

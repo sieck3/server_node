@@ -42,3 +42,7 @@
         height: 60%;
     }
 }
+
+.bookAnimation {
+    border: green solid 4px;
+}
