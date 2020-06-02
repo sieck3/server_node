@@ -13,27 +13,24 @@ class BookDetailContainer extends Component {
 
         }
 
-        this.returneSearch =this.returneSearch.bind(this)
+        this.returneSearch = this.returneSearch.bind(this)
 
     }
 
     componentDidMount() {
-        console.log('Secction')
     }
 
-    returneSearch(){
+    returneSearch() {
         this.props.changePage('BookContainer')
     }
 
 
     render() {
 
-        //{this.state.livre !== null ? <BookDetailComponent titulo={this.state.volumeInfo.title} imagen='img/notFound.png' /> : 'loading'}
-
         return (
             <div>
                 <h2>{this.state.livre.volumeInfo.title}</h2>
-                <BookDetailComponent titulo={this.state.livre.volumeInfo.title} imagen={typeof this.state.livre.volumeInfo.imageLinks === 'undefined' ? 'notFound' : this.state.livre.volumeInfo.imageLinks.smallThumbnail} />
+                <BookDetailComponent titulo={this.state.livre.volumeInfo.title} imagen={typeof this.state.livre.volumeInfo.imageLinks === 'undefined' ? 'notFound' : this.state.livre.volumeInfo.imageLinks.smallThumbnail} description={this.state.livre.volumeInfo.description} />
                 <button onClick={this.returneSearch}>return</button>
             </div>
 

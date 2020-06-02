@@ -31,14 +31,11 @@ class BookContainer extends Component {
 
     getBookName(e) {
         this.setState({ bookName: e.target.value })
-        console.log('getBookName ' + e.target.value)
-        console.log(this.state.bookName)
+
     }
 
     getAutor(e) {
         this.setState({ bookAutor: e.target.value })
-        console.log('getBookAutor ' + e.target.value)
-        console.log(this.state.bookAutor)
     }
 
     envoie(event) {
@@ -49,7 +46,6 @@ class BookContainer extends Component {
         if (this.state.bookAutor !== '') {
             searchUrl = 'https://www.googleapis.com/books/v1/volumes?q=' + this.state.bookName + '+' + 'inauthor:' + this.state.bookAutor + '&key=' + APIKEY
         }
-        console.log('search result =' + searchUrl)
         fetch(searchUrl, { method: 'GET' })
             .then(response => response.json())
             .then(response => {
@@ -62,23 +58,28 @@ class BookContainer extends Component {
                 }
             })
         fetch('/ruta1', { method: 'GET' })
+
+        this.props.changeLivres(searchUrl)
     }
 
     goDetailBook(event) {
         //this.props.changePage('BookDetailContainer')
 
-        console.log('detalles Id: ' + event.target.id)
         this.props.changeLivre(event.target.id)
-        
+
     }
 
     render() {
+
+        let libros = this.props.livres !== {} ? this.props.livres : null
+
         return (
+
             <div>
                 <FormComponent metodo={this.envoie} getBookName={this.getBookName} getAutor={this.getAutor} />
                 <div id='books-container' >
                     {this.state.spinner === true ? <span className="spinner"></span> : ''}
-                    {this.state.libros !== null ? this.state.libros.map((libro, index) => <BookComponent bookId={libro.id} titulo={libro.volumeInfo.title} imagen={typeof libro.volumeInfo.imageLinks === 'undefined' ? 'img/notFound.png' : libro.volumeInfo.imageLinks.thumbnail} changePage={this.goDetailBook} key={index} />) : ''}
+                    {libros !== null ? libros.map((libro, index) => <BookComponent bookId={libro.id} titulo={libro.volumeInfo.title} imagen={typeof libro.volumeInfo.imageLinks === 'undefined' ? 'img/notFound.png' : libro.volumeInfo.imageLinks.thumbnail} changePage={this.goDetailBook} key={index} />) : ''}
                 </div>
             </div>
 
