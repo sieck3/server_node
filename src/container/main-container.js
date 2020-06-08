@@ -2,8 +2,8 @@
 import React, { Component } from 'react'
 import '../css/style.css'
 import BookContainer from '../container/book-container'
-import BookDetailComponent from '../component/book-detail-component'
 import BookDetailContainer from '../container/book-detail-container'
+import DanielaContainer from '../container/daniela-container'
 
 class MainContainer extends Component {
     constructor(props) {
@@ -27,7 +27,7 @@ class MainContainer extends Component {
 
     componentDidMount() {
         //console.log('Main container ComponentDidMount')
-      
+
     }
 
     changePage(page) {
@@ -92,12 +92,12 @@ class MainContainer extends Component {
     }
 
     render() {
+
         return (
             <div>
                 <h1>Buscalibros</h1>
                 {this.pageCourrante()}
             </div>
-
         )
     }
 
