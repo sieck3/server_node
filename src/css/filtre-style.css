@@ -1,3 +1,4 @@
+
 fieldset {
     background-color: lightgray;
     -webkit-box-shadow: 4px 5px 5px 0px rgba(0, 0, 0, 0.39);
@@ -22,6 +23,8 @@ fieldset>legend {
 fieldset {
     width: 30%;
     margin: 0 auto;
+    font-family: 'Caveat', cursive;
+    font-size: 1.5rem;
 }
 
 fieldset label {
@@ -51,6 +54,7 @@ form fieldset+div {
 
 fieldset div input {
     width: 50%;
+    border-radius: 4px;
 }
 
 @media only screen and (max-width: 959px) {
