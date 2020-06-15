@@ -11,11 +11,11 @@ const FormComponent = ({ bookNameC, bookAutorC, metodo, getBookName, getAutor, b
             <fieldset>
                 <legend>Buscador</legend>
                 <div>
-                    <label>Nombre:</label>
+                    <label>Nombre</label>
                     <input type="text" onChange={getBookName} value={bookNameC} />
                 </div>
                 <div>
-                    <label>Autor:</label>
+                    <label>Autor</label>
                     <input type='text' onChange={getAutor} value={bookAutorC} />
                 </div>
             </fieldset>

@@ -58,4 +58,19 @@ fieldset div input {
         width: 60%;
         margin: 0 auto;
     }
+    fieldset div {
+        padding: 2%;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+    }
+    fieldset div input {
+        width: 100%;
+        text-align: left;
+    }
+    fieldset div label {
+        width: 100%;
+        text-align: left;
+    }
 }
